@@ -25,7 +25,7 @@ import { download } from '@/utils/request'
 
 // svg图标
 import 'virtual:svg-icons-register'
-import SvgIcon from '@/components/SvgIcon.vue'
+import SvgIcon from './components/SvgIcon/index.vue'
 import elementIcons from '@/components/SvgIcon/svgicon'
 
 import './permission' // permission control
@@ -34,13 +34,13 @@ import { useDict } from '@/utils/dict'
 import { parseTime, resetForm, addDateRange, handleTree, selectDictLabel } from '@/utils/ruoyi'
 
 // 分页组件
-import Pagination from '@/components/Pagination.vue'
+import Pagination from './components/Pagination/index.vue'
 // 自定义表格工具组件
-import RightToolbar from '@/components/RightToolbar.vue'
+import RightToolbar from './components/RightToolbar/index.vue'
 // 自定义树选择组件
-import TreeSelect from '@/components/TreeSelect.vue'
+import TreeSelect from './components/TreeSelect/index.vue'
 // 字典标签组件
-import DictTag from '@/components/DictTag.vue'
+import DictTag from './components/DictTag/index.vue'
 
 const app = createApp(App)
 

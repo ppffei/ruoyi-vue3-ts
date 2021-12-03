@@ -9,20 +9,32 @@
   </el-breadcrumb>
 </template>
 
-<script setup>
-const route = useRoute();
-const router = useRouter();
+<script setup lang="ts">
+const route = useRoute()
+const router = useRouter()
 const levelList = ref([])
+
+
+let isDone: boolean = false
+let decLiteral: number = 6
+let list: Array<number> = []
+const list1: number[]  = [1, '2,', '3']
+const x: [string, number] = ['hello', 1]
+x[3] = 'wordl'
+
+isDone = '111'
+decLiteral = '111'
+console.log(isDone)
+list = [1, '2', 3]
 
 function getBreadcrumb() {
   // only show routes with meta.title
-  let matched = route.matched.filter(item => item.meta && item.meta.title);
+  let matched: any[] = route.matched.filter(item => item.meta && item.meta.title)
   const first = matched[0]
   // 判断是否为首页
   if (!isDashboard(first)) {
     matched = [{ path: '/index', meta: { title: '首页' } }].concat(matched)
   }
-
   levelList.value = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
 }
 function isDashboard(route) {
@@ -48,7 +60,7 @@ watchEffect(() => {
   }
   getBreadcrumb()
 })
-getBreadcrumb();
+getBreadcrumb()
 </script>
 
 <style lang='scss' scoped>

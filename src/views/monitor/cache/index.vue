@@ -35,7 +35,7 @@
                   <td class="el-table__cell is-leaf"><div class="cell">Key数量</div></td>
                   <td class="el-table__cell is-leaf"><div class="cell" v-if="cache.dbSize">{{ cache.dbSize }} </div></td>
                   <td class="el-table__cell is-leaf"><div class="cell">网络入口/出口</div></td>
-                  <td class="el-table__cell is-leaf"><div class="cell" v-if="cache.info">{{ cache.info.instantaneous_input_kbps }}kps/{{cache.info.instantaneous_output_kbps}}kps</div></td>
+                  <td class="el-table__cell is-leaf"><div class="cell" v-if="cache.info">{{ cache.info.instantaneous_input_kbps }}kps/{{ cache.info.instantaneous_output_kbps }}kps</div></td>
                 </tr>
               </tbody>
             </table>
@@ -67,49 +67,49 @@
 </template>
 
 <script setup lang="ts">
-import { getCache } from '@/api/monitor/cache';
-import * as echarts from 'echarts';
+import { getCache } from '@/api/monitor/cache'
+import * as echarts from 'echarts'
 
-const cache = ref([]);
-const commandstats = ref(null);
-const usedmemory = ref(null);
-const { proxy } = getCurrentInstance();
+const cache = ref([])
+const commandstats = ref(null)
+const usedmemory = ref(null)
+const { proxy } = getCurrentInstance()
 
 function getList() {
-  proxy.$modal.loading("正在加载缓存监控数据，请稍候！");
+  proxy.$modal.loading('正在加载缓存监控数据，请稍候！')
   getCache().then(response => {
-    proxy.$modal.closeLoading();
-    cache.value = response.data;
+    proxy.$modal.closeLoading()
+    cache.value = response.data
 
-    const commandstatsIntance = echarts.init(commandstats.value, "macarons");
+    const commandstatsIntance = echarts.init(commandstats.value, 'macarons')
     commandstatsIntance.setOption({
       tooltip: {
-        trigger: "item",
-        formatter: "{a} <br/>{b} : {c} ({d}%)"
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c} ({d}%)'
       },
       series: [
         {
-          name: "命令",
-          type: "pie",
-          roseType: "radius",
+          name: '命令',
+          type: 'pie',
+          roseType: 'radius',
           radius: [15, 95],
-          center: ["50%", "38%"],
+          center: ['50%', '38%'],
           data: response.data.commandStats,
-          animationEasing: "cubicInOut",
+          animationEasing: 'cubicInOut',
           animationDuration: 1000
         }
       ],
-    });
+    })
 
-    const usedmemoryInstance = echarts.init(usedmemory.value, "macarons");
+    const usedmemoryInstance = echarts.init(usedmemory.value, 'macarons')
     usedmemoryInstance.setOption({
       tooltip: {
-        formatter: "{b} <br/>{a} : " + cache.value.info.used_memory_human
+        formatter: '{b} <br/>{a} : ' + cache.value.info.used_memory_human
       },
       series: [
         {
-          name: "峰值",
-          type: "gauge",
+          name: '峰值',
+          type: 'gauge',
           min: 0,
           max: 1000,
           detail: {
@@ -118,7 +118,7 @@ function getList() {
           data: [
             {
               value: parseFloat(cache.value.info.used_memory_human),
-              name: "内存消耗"
+              name: '内存消耗'
             }
           ]
         }
@@ -127,5 +127,5 @@ function getList() {
   })
 }
 
-getList();
+getList()
 </script>

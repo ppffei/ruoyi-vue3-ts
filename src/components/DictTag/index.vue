@@ -21,22 +21,25 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const props = defineProps({
   // 数据
   options: {
     type: Array,
-    default: null,
+    default: () => [],
   },
   // 当前的值
-  value: [Number, String, Array],
+  value: {
+    type: Array,
+    default: () => [Number, String, Array]
+  }
 })
 
 const values = computed(() => {
   if (props.value !== null && typeof props.value !== 'undefined') {
-    return Array.isArray(props.value) ? props.value : [String(props.value)];
+    return Array.isArray(props.value) ? props.value : [String(props.value)]
   } else {
-    return [];
+    return []
   }
 })
 

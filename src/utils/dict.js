@@ -1,17 +1,23 @@
+/*
+ * @Descripttion: 
+ * @Author: pangpf
+ * @Date: 2021-12-02 15:11:03
+ * @LastEditors: pangpf
+ */
 import { getDicts } from '@/api/system/dict/data'
 
 /**
  * 获取字典数据
  */
 export function useDict(...args) {
-  const res = ref({});
+  const res = ref({})
   return (() => {
     args.forEach((d, index) => {
-      res.value[d] = [];
+      res.value[d] = []
       getDicts(d).then(resp => {
         res.value[d] = resp.data.map(p => ({ label: p.dictLabel, value: p.dictValue, elTagType: p.listClass }))
       })
     })
-    return toRefs(res.value);
+    return toRefs(res.value)
   })()
 }

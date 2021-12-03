@@ -2,7 +2,7 @@
   <div :class="{ 'hidden': hidden }" class="pagination-container">
     <el-pagination
       :background="background"
-      v-model:current-page="currentPage"
+      :current-page="currentPage"
       :page-size="pageSize"
       :layout="layout"
       :page-sizes="pageSizes"
@@ -59,7 +59,7 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits();
+const emit = defineEmits()
 const currentPage = computed({
   get() {
     return props.page

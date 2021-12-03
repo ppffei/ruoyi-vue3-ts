@@ -1,3 +1,9 @@
+<!--
+ * @Descripttion: 
+ * @Author: pangpf
+ * @Date: 2021-12-02 15:11:03
+ * @LastEditors: pangpf
+-->
 <template>
   <el-breadcrumb class="app-breadcrumb" separator="/">
     <transition-group name="breadcrumb">
@@ -13,19 +19,6 @@
 const route = useRoute()
 const router = useRouter()
 const levelList = ref([])
-
-
-let isDone: boolean = false
-let decLiteral: number = 6
-let list: Array<number> = []
-const list1: number[]  = [1, '2,', '3']
-const x: [string, number] = ['hello', 1]
-x[3] = 'wordl'
-
-isDone = '111'
-decLiteral = '111'
-console.log(isDone)
-list = [1, '2', 3]
 
 function getBreadcrumb() {
   // only show routes with meta.title
